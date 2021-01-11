@@ -1,0 +1,24 @@
+Source: https://gist.github.com/JasaNiklanovic/5779ea055799cda7a86f16e50305b90f
+
+First and foremost: this assignment shouldn’t be too hard. Seriously. It contains no tricks and you don't need to be a genius to do it.
+Basically, you just need to write a simple server and render results on the client side. We don't need you to deploy your app anywhere, 
+but obviously you can if you want to. 
+Make some assumptions that seem sensible to you -- don't worry if you're not 100% sure -- and write some code we can later talk about.
+
+The assignment aims to give us a glimpse of the decisions you make when you write real-world code. Ideally, the code should be readable, robust and optimal: 
+as if it will end up in production.
+We recommend you use whatever language you feel strongest in. 
+It doesn’t have to be one we use (Javascript) —we believe good developers can be productive in any language.
+
+You may upload your solution to a Github repo and share with us, but feel free to use anything else that is practical.
+
+
+
+The task:
+-Create a basic app that uses a simple server to fetch a list of posts and renders those posts. 
+-The app should also allow you to click on any of the rendered posts and take you to a post detail page, where the user can see the post body.
+
+A few notes that can help you out:
+-A sample json of posts you can work with is available on this endpoint: https://jsonplaceholder.typicode.com/posts
+-If you'd like, you can write a few basic tests that test your core functionalities.
+-As you'll be making a network request, please mind that requests can fail so protect the app against any errors.

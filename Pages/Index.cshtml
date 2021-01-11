@@ -1,0 +1,17 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Messages";
+}
+
+<div>
+    @foreach (var message in Model.listOfMessages)
+    {
+        <p>
+            <text>Post ID: @message.postID</text><br>
+            <text>User ID: @message.userID</text><br>
+            <text>Title: @message.title</text><br>
+            <a href='@string.Format("/MessageDetails?id={0}", message.postID)'>Show Message Content</a>
+        </p>
+    }
+</div>

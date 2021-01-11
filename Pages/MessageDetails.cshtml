@@ -1,0 +1,12 @@
+﻿@page
+@model MessageDetails
+@{
+    ViewData["Title"] = "Message ID {Model.MessageID}";  //TODO Add ID value to page title
+}
+<h1>@ViewData["Title"]</h1>
+
+<p>
+    <text>ID: </text>@Model.messageID
+</p>
+
+<p>MessageBodyGoesHere</p>

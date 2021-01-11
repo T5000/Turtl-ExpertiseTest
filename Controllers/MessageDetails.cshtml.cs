@@ -22,17 +22,27 @@ namespace Turtl_TMlinaric.Pages
             _logger = logger;
         }
 
-        public int messageID { get; set; }
-        public List<Message> listOfMessages { get; set; }
+        public int selectedPostID { get; set; }
+        public Message selectedMessage { get; set; }
+        //public List<Message> listOfMessages { get; set; }
+        
 
         public async Task<IActionResult> OnGet(int id)
         {
-            messageID = id;
+            selectedPostID = id;
             string stringJsonMessages = await Functions.GetJsonMessagesFromUrlAsString("https://jsonplaceholder.typicode.com/posts");
 
             if (stringJsonMessages != null)
-                listOfMessages = JsonSerializer.Deserialize<List<Message>>(stringJsonMessages);
-                
+            {
+                var listOfMessages = JsonSerializer.Deserialize<List<Message>>(stringJsonMessages);
+                foreach (Message message in listOfMessages)
+                {
+                    if (message.postID == selectedPostID)
+                    {
+                        selectedMessage = message;
+                    }
+                }
+            }
             else
             {
                 //TODO LOG ERROR

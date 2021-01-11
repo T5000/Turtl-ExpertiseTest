@@ -1,12 +1,13 @@
 ﻿@page
 @model MessageDetails
 @{
-    ViewData["Title"] = "Message ID {Model.MessageID}";  //TODO Add ID value to page title
+    ViewData["Title"] = "Selected message details";  //TODO Add ID value to page title
 }
-<h1>@ViewData["Title"]</h1>
+<h2>@ViewData["Title"]</h2>
 
-<p>
-    <text>ID: </text>@Model.messageID
-</p>
-
-<p>MessageBodyGoesHere</p>
+<div>
+    <text>Post ID: </text>@Model.selectedMessage.postID<br>
+    <text>User ID: </text>@Model.selectedMessage.userID<br>
+    <text>Title: </text>@Model.selectedMessage.title<br>
+    <Text>Body: </Text>@Model.selectedMessage.body<br>
+</div>

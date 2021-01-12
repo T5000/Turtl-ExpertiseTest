@@ -1,17 +1,17 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = "Messages";
+    ViewData["Title"] = "List of all posts";
 }
 
 <div>
-    @foreach (var message in Model.listOfMessages)
+    @foreach (var post in Model.listOfPosts)
     {
         <p>
-            <text>Post ID: @message.postID</text><br>
-            <text>User ID: @message.userID</text><br>
-            <text>Title: @message.title</text><br>
-            <a href='@string.Format("/MessageDetails?id={0}", message.postID)'>Show Message Content</a>
+            <text>Post ID: @post.postID</text><br>
+            <text>User ID: @post.userID</text><br>
+            <text>Title: @post.title</text><br>
+            <a href='@string.Format("/PostDetails?id={0}", post.postID)'>Show Post Content</a>
         </p>
     }
 </div>

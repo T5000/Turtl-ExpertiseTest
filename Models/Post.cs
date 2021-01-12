@@ -1,9 +1,8 @@
-//using System.Text.Json;
 using System.Text.Json.Serialization;
 
 namespace Turtl_TMlinaric.Models
 {
-    public class Message
+    public class Post
     {
         [JsonPropertyName("userId")]
         public int userID { get; set; }

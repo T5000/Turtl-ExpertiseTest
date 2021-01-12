@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 
 using System.Text.Json;                                                                //10.01.2021 TMLINARIC Needed for json parsing
-using Turtl_TMlinaric.Models;                                                          //10.01.2021 TMLINARIC References the definition of "Message" element
+using Turtl_TMlinaric.Models;                                                          //10.01.2021 TMLINARIC References the definition of "Post" element
 using Turtl_TMlinaric.Shared;                                                          //11.01.2021 TMLINARIC Code repetition is bad, m'kaaaaay?
 
 namespace Turtl_TMlinaric.Pages
@@ -19,16 +19,16 @@ namespace Turtl_TMlinaric.Pages
         {
             _logger = logger;
         }
-        public List<Message> listOfMessages { get; set; }
+        public List<Post> listOfPosts { get; set; }
 
         public async Task OnGet()
-        {            
-            listOfMessages = new List<Message>();
-            string stringJsonMessages = await Functions.GetJsonMessagesFromUrlAsString("https://jsonplaceholder.typicode.com/posts");
+        {
+            listOfPosts = new List<Post>();
+            string JsonPostsAsString = await Functions.GetJsonPostsFromUrlAsString("https://jsonplaceholder.typicode.com/posts");
             
-            if (stringJsonMessages != null)
+            if (JsonPostsAsString != null)
             {
-                listOfMessages = JsonSerializer.Deserialize<List<Message>>(stringJsonMessages);
+                listOfPosts = JsonSerializer.Deserialize<List<Post>>(JsonPostsAsString);
             }
             else
             {

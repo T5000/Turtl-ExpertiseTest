@@ -4,14 +4,16 @@
     ViewData["Title"] = "List of all posts";
 }
 
-<div>
-    @foreach (var post in Model.listOfPosts)
-    {
-        <p>
-            <text>Post ID: @post.postID</text><br>
-            <text>User ID: @post.userID</text><br>
-            <text>Title: @post.title</text><br>
-            <a href='@string.Format("/PostDetails?id={0}", post.postID)'>Show Post Content</a>
-        </p>
-    }
+<div class="text-center">
+    <h1>@ViewData["Title"]</h1>
 </div>
+
+@foreach (var post in Model.listOfPosts)
+{
+    <div>
+        <a href='@string.Format("/PostDetails?id={0}", post.postID)'>Open</a>
+        <text>post @post.title</text>
+        <text>(Posted by user @post.userID)</text>
+    </div>
+    <br>
+}

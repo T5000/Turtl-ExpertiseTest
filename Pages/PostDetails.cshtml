@@ -1,15 +1,15 @@
 ﻿@page
 @model PostDetails
 @{
-    ViewData["Title"] = @Model.selectedPost.title;
+    ViewData["Title"] = "Post details";
 }
 <div class="text-center">
     <h3>@ViewData["Title"]</h3>
 </div>
 <br>
 <div>
-    <p>@Model.selectedPost.body</p>
-    <p>Posted by user: @Model.selectedPost.userID</p>
-    @*<text>Post ID: </text>@Model.selectedPost.postID<br>*@
-    @*<text>Title: </text>@Model.selectedPost.title<br>*@
+    <p>@Model.selectedPost?.body</p>
+    <p>Posted by user: @Model.selectedPost?.userID</p>
+    @*<text>Post ID: </text>@Model.selectedPost?.postID<br>*@
+    @*<text>Title: </text>@Model.selectedPost?.title<br>*@
 </div>

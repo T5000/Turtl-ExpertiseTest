@@ -28,25 +28,64 @@ namespace Turtl_TMlinaric.Pages
         public async Task<IActionResult> OnGet(int id)
         {
             selectedPostID = id;
-            string stringJsonPosts = await Functions.GetJsonPostsFromUrlAsString("https://jsonplaceholder.typicode.com/posts");
 
-            if (stringJsonPosts != null)
+            string stringJsonPosts = "";
+            try
             {
-                var listOfPosts = JsonSerializer.Deserialize<List<Post>>(stringJsonPosts);
+                stringJsonPosts = await Functions.GetJsonPostsFromUrlAsString("https://jsonplaceholder.typicode.com/posts", _logger);
+            }
+            catch
+            {
+                _logger.LogError("Something went wrong with fucntion 'GetJsonPostsFromUrlAsString!'");
+                TempData["ErrorMessage"] = "could not load json from source";
+
+                return Page();
+            }
+
+            if (stringJsonPosts != "ER1" || stringJsonPosts != "ER2" || stringJsonPosts != "ER3" || stringJsonPosts != "ER4")
+            {
+                var listOfPosts = new List<Post>();
+                try
+                {
+                    listOfPosts = JsonSerializer.Deserialize<List<Post>>(stringJsonPosts);
+                }
+                catch
+                {
+                    _logger.LogError("Could not deserialize json format from source");
+                    TempData["ErrorMessage"] = "json data format incorrect";
+                    return Page();
+                }
+
                 foreach (Post post in listOfPosts)
                 {
                     if (post.postID == selectedPostID)
                     {
                         selectedPost = post;
+                        break;
                     }
                 }
+                return Page();
             }
             else
             {
-                //TODO LOG ERROR
+                switch (stringJsonPosts)
+                {
+                    case "ER1":
+                        TempData["ErrorMessage"] = "No response from source URL";
+                        return Page();
+                    case "ER2":
+                        TempData["ErrorMessage"] = "Error converting response content to string from source";
+                        return Page();
+                    case "ER3":
+                        TempData["ErrorMessage"] = "Empty page content";
+                        return Page();
+                    case "ER4":
+                        TempData["ErrorMessage"] = "Unsuccessful communication with source";
+                        return Page();
+                    default:
+                        return Page();
+                }
             }
-
-            return Page();
         }
     }
 }

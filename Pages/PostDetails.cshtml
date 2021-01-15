@@ -1,7 +1,14 @@
 ﻿@page
 @model PostDetails
 @{
-    ViewData["Title"] = "Post details";
+    if (@Model.selectedPost?.title == null || @Model.selectedPost?.title == "")
+    {
+        ViewData["Title"] = "Error reading post title";
+    }
+    else
+    {
+        ViewData["Title"] = @Model.selectedPost?.title;
+    }
 }
 <div class="text-center">
     <h3>@ViewData["Title"]</h3>
